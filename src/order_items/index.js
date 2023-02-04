@@ -8,6 +8,8 @@ const isTokenValid = require('../middleware/is-token-valid');
 *     get:
 *       summary: Get all orders for a seller
 *       tags: [Order Items]
+*       security:
+*         - bearerAuth: []
 *       parameters:
 *         - in: query
 *           name: items_per_page
@@ -38,6 +40,8 @@ router.get('/', isTokenValid, controller.orders);
 *     get:
 *       summary: Get all orders for a seller
 *       tags: [Order Items]
+*       security:
+*         - bearerAuth: []
 *       parameters:
 *         - in: path
 *           name: id
