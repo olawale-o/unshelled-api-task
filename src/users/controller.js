@@ -4,14 +4,14 @@ const tokenService = require('../services/token-service');
 module.exports = {
   login: async (req, res) => {
     const { cookies } = req;
-    const { sellerId, sellerZipCodePrefix } = req.body;
+    const { username, password } = req.body;
     try {
-      const seller = await service.login({ sellerId, sellerZipCodePrefix });
-      const accessToken = await tokenService.newAccessToken({ sellerId });
+      const seller = await service.login({ username, password });
+      const accessToken = await tokenService.newAccessToken({ sellerId: username });
       if (cookies?.jwt) {
         res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
       }
-      const refreshToken = await tokenService.newfreshToken({ sellerId });
+      const refreshToken = await tokenService.newfreshToken({ sellerId: username });
       res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true });
       res.status(200).json({
         accessToken,
