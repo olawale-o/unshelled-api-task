@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(cors(corsOption));
 
 app.use('/api/v1/account', require('./account'));
-app.use('/api/v1/order_items', require('./orders'));
+app.use('/api/v1/order_items', require('./order_items'));
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 
