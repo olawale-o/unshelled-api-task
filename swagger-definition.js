@@ -1,6 +1,7 @@
 const {
   Account,
   AccountLoginRequest,
+  OrderItem,
 } = require('./schemas');
 
 module.exports = {
@@ -33,6 +34,7 @@ module.exports = {
     schemas: {
       Account,
       AccountLoginRequest,
+      OrderItem,
     },
   },
 };
