@@ -33,6 +33,8 @@ router.post('/', controller.login);
 *     put:
 *       summary: Update user
 *       tags: [Account]
+*       security:
+*         - bearerAuth: []
 *       requestBody:
 *         required: true
 *         content:

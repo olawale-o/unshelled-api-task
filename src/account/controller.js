@@ -6,7 +6,7 @@ module.exports = {
     const { cookies } = req;
     const { username, password } = req.body;
     try {
-      const seller = await service.login({ username, password });
+      const seller = await service.login({ username, password: parseInt(password, 10) });
       const accessToken = await tokenService.newAccessToken({ sellerId: username });
       if (cookies?.jwt) {
         res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
