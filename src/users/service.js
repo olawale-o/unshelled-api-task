@@ -20,4 +20,24 @@ module.exports = {
       throw new Error(error);
     }
   },
+  update: async (credentials) => {
+    try {
+      const seller = await repository.findOneAndUpdate(
+        {
+          seller_id: credentials.seller_id,
+        },
+        {
+          $set: {
+            seller_city: credentials.seller_city,
+            seller_state: credentials.seller_state,
+          },
+        },
+        { returnDocument: 'after' },
+      );
+
+      return seller.value;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };
