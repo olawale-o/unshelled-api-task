@@ -18,4 +18,5 @@ export default {
     }
   },
   countDocs: async (filter) => repository.countDocs(filter),
+  deleteOrderItem: async (filter) => repository.deleteOne(filter),
 };

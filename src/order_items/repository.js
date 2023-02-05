@@ -21,8 +21,8 @@ export default {
     },
     {
       $sort: {
-        price: 1,
-        shipping_limit_date: 1,
+        price: filter.sort === 'price' ? 1 : -1,
+        shipping_limit_date: filter.sort === 'date' ? 1 : -1,
       },
     },
     {
@@ -66,4 +66,5 @@ export default {
     },
   ]).toArray(),
   countDocs: async (filter) => Order.countDocuments(filter),
+  deleteOne: async (filter) => Order.deleteOne(filter),
 };

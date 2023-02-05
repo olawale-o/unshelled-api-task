@@ -42,7 +42,7 @@ router.get('/', isTokenValid, controller.orders);
 * @swagger
 *   /order_items/{id}:
 *     get:
-*       summary: Get all orders for a seller
+*       summary: Get an order for a seller
 *       tags: [Order Items]
 *       security:
 *         - bearerAuth: []
@@ -64,5 +64,30 @@ router.get('/', isTokenValid, controller.orders);
 *           description: Internal server error
 */
 router.get('/:id', isTokenValid, controller.order);
+
+/**
+* @swagger
+*   /order_items/{id}:
+*     delete:
+*       summary: Delete an order item
+*       tags: [Order Items]
+*       parameters:
+*         - in: path
+*           name: id
+*           schema:
+*             type: integer
+*           description: The order item id
+*       responses:
+*         200:
+*           description: Success
+*           content:
+*             application/json:
+*               schema:
+*                 items:
+*                   $ref: '#/components/schemas/OrderItem'
+*         500:
+*           description: Internal server error
+*/
+router.delete('/:id', isTokenValid, controller.order);
 
 export default router;
