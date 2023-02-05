@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import controller from './controller.js';
-
 import isTokenValid from '../middleware/is-token-valid.js';
+
+import controller from './controller.js';
 
 const router = Router();
 
@@ -71,6 +71,8 @@ router.get('/:id', isTokenValid, controller.order);
 *     delete:
 *       summary: Delete an order item
 *       tags: [Order Items]
+*       security:
+*         - bearerAuth: []
 *       parameters:
 *         - in: path
 *           name: id
@@ -78,16 +80,11 @@ router.get('/:id', isTokenValid, controller.order);
 *             type: integer
 *           description: The order item id
 *       responses:
-*         200:
+*         204:
 *           description: Success
-*           content:
-*             application/json:
-*               schema:
-*                 items:
-*                   $ref: '#/components/schemas/OrderItem'
 *         500:
 *           description: Internal server error
 */
-router.delete('/:id', isTokenValid, controller.order);
+router.delete('/:id', isTokenValid, controller.deleteOrderItem);
 
 export default router;

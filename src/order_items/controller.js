@@ -21,7 +21,9 @@ export default {
   },
   order: async (req, res) => {
     try {
-      const order = await service.order({ order_item_id: req.params.id, seller_id: req.sellerId });
+      const order = await service.order({
+        order_item_id: req.params.id, seller_id: req.sellerId,
+      });
       res.status(200).json({
         data: order,
         limit: 20,
@@ -34,10 +36,11 @@ export default {
   },
   deleteOrderItem: async (req, res) => {
     try {
-      const { sellerId } = req;
       const { id } = req.params;
-      const order = await service.deleteOrderItem({ order_item_id: id, seller_id: sellerId });
-      res.status(200).json({ order });
+      await service.deleteOrderItem({ order_item_id: parseInt(id, 10) });
+      res.status(204).json({
+        message: `Order item with id ${id} deleted`,
+      });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

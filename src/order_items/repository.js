@@ -62,9 +62,33 @@ export default {
       },
     },
     {
-      $limit: 10,
+      $lookup: {
+        from: 'products',
+        localField: 'product_id',
+        foreignField: 'product_id',
+        as: 'product',
+      },
+    },
+    {
+      $project: {
+        product: { $arrayElemAt: ['$product', 0] },
+        id: '$order_item_id',
+        product_id: 1,
+        price: 1,
+        date: '$shipping_limit_date',
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        id: 1,
+        product_id: 1,
+        price: 1,
+        date: 1,
+        product_category_name: '$product.product_category_name',
+      },
     },
   ]).toArray(),
   countDocs: async (filter) => Order.countDocuments(filter),
-  deleteOne: async (filter) => Order.deleteOne(filter),
+  deleteOne: async (filter) => Order.deleteMany(filter),
 };
