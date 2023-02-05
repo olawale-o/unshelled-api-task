@@ -36,9 +36,10 @@ export default {
   },
   deleteOrderItem: async (req, res) => {
     try {
+      const { sellerId } = req;
       const { id } = req.params;
-      await service.deleteOrderItem({ order_item_id: parseInt(id, 10) });
-      res.status(204).json({
+      await service.deleteOrderItem({ order_item_id: parseInt(id, 10), seller_id: sellerId });
+      res.status(200).json({
         message: `Order item with id ${id} deleted`,
       });
     } catch (error) {
