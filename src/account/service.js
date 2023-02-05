@@ -45,7 +45,6 @@ export default {
       const seller = await repository.findOne(filter);
       return seller;
     } catch (error) {
-      console.log(error);
       throw new Error(error);
     }
   },

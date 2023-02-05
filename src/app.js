@@ -31,7 +31,6 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: t
 
 app.use(async (err) => {
   console.log(err);
-  // await handleError(err, res);
 });
 
 // module.exports = app;
