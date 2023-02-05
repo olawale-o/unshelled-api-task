@@ -1,5 +1,5 @@
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
-module.exports = function dbInstance(uri) {
+export default function dbInstance(uri) {
   return new MongoClient(uri);
-};
+}

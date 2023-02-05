@@ -46,7 +46,7 @@ const AccountLoginRequest = {
   },
 };
 
-module.exports = {
+export {
   Account,
   AccountLoginRequest,
 };

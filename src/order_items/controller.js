@@ -1,6 +1,6 @@
-const service = require('./service');
+import service from './service.js';
 
-module.exports = {
+export default {
   orders: async (req, res) => {
     try {
       const { sellerId } = req;

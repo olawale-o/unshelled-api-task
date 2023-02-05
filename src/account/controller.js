@@ -1,7 +1,7 @@
-const service = require('./service');
-const tokenService = require('../services/token-service');
+import service from './service.js';
+import tokenService from '../services/token-service.js';
 
-module.exports = {
+export default {
   login: async (req, res) => {
     const { cookies } = req;
     const { username, password } = req.body;

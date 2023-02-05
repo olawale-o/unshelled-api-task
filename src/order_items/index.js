@@ -1,6 +1,10 @@
-const router = require('express').Router();
-const controller = require('./controller');
-const isTokenValid = require('../middleware/is-token-valid');
+import { Router } from 'express';
+
+import controller from './controller.js';
+
+import isTokenValid from '../middleware/is-token-valid.js';
+
+const router = Router();
 
 /**
 * @swagger
@@ -61,4 +65,4 @@ router.get('/', isTokenValid, controller.orders);
 */
 router.get('/:id', isTokenValid, controller.order);
 
-module.exports = router;
+export default router;

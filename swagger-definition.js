@@ -1,10 +1,10 @@
-const {
+import {
   Account,
   AccountLoginRequest,
   OrderItem,
-} = require('./schemas');
+} from './schemas/index.js';
 
-module.exports = {
+export default {
   openapi: '3.0.0',
   info: {
     title: 'Express API for Unshelled task',

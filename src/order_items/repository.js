@@ -1,8 +1,10 @@
-const dbClient = require('../database')('mongodb://localhost:27017/unshelled?retryWrites=true&w=majority');
+import client from '../database/index.js';
+
+const dbClient = client('mongodb://localhost:27017/unshelled?retryWrites=true&w=majority');
 
 const Order = dbClient.db('unshelled').collection('orders');
 
-module.exports = {
+export default {
   findAll: async (filter) => Order.aggregate([
     {
       $match: {

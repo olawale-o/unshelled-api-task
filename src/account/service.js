@@ -1,6 +1,6 @@
-const repository = require('./repository');
+import repository from './repository.js';
 
-module.exports = {
+export default {
   login: async (credentials) => {
     try {
       const seller = await repository.findOne({

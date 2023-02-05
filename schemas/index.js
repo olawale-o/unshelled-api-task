@@ -1,13 +1,11 @@
-const {
+import {
   Account,
   AccountLoginRequest,
-} = require('./Account');
+} from './Account.js';
 
-const {
-  OrderItem,
-} = require('./OrderItem');
+import OrderItem from './OrderItem.js';
 
-module.exports = {
+export {
   Account,
   AccountLoginRequest,
   OrderItem,

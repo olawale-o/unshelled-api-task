@@ -2,5 +2,13 @@
   "extends": "airbnb-base",
   "parserOptions": {
     "ecmaVersion": 2020
+  },
+  "rules": {
+    "import/extensions": [
+        "error",
+        {
+            "js": "ignorePackages"
+        }
+    ]
   }
 }

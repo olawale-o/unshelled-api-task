@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const signToken = (credentials, secretKey, expiresIn) => new Promise((resolve, reject) => {
   const { sellerId } = credentials;
@@ -27,7 +27,7 @@ const newAccessToken = async (credentials) => signToken(credentials, 'ACCESS_TOK
 
 const newfreshToken = async (credentials) => signToken(credentials, 'REFRESH_TOKEN_SECRET', 1000 * 60 * 60 * 24);
 
-module.exports = {
+export default {
   newAccessToken,
   newfreshToken,
   verify: async (credentials) => verifyToken(credentials, 'ACCESS_TOKEN_SECRET'),

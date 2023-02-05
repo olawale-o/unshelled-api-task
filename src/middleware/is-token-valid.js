@@ -1,6 +1,6 @@
-const tokenService = require('../services/token-service');
+import tokenService from '../services/token-service.js';
 
-module.exports = async (req, res, next) => {
+export default async function tokenMiddleware(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ message: 'Unauthorized' });
@@ -11,4 +11,4 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
-};
+}

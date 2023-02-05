@@ -1,29 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-// const handleError = require('../common/error-handler');
-
-// const whitelist = ['http://localhost:3000', 'http://localhost:8080'];
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import swaggerOptions from '../swagger-options.js';
+import account from './account/index.js';
+import orderItems from './order_items/index.js';
 
 const corsOption = {
-  // origin(origin, callback) {
-  //   if (whitelist.indexOf(origin) !== -1) {
-  //     callback(null, true);
-  //   } else {
-  //     callback(new Error('Not allowed by CORS'));
-  //   }
-  // },
   origin: true,
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
 const app = express();
-
-const swaggerOptions = require('../swagger-options');
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
@@ -33,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use('/api/v1/account', require('./account'));
-app.use('/api/v1/order_items', require('./order_items'));
+app.use('/api/v1/account', account);
+app.use('/api/v1/order_items', orderItems);
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 
@@ -43,4 +34,6 @@ app.use(async (err) => {
   // await handleError(err, res);
 });
 
-module.exports = app;
+// module.exports = app;
+
+export default app;

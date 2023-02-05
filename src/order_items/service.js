@@ -1,6 +1,6 @@
-const repository = require('./repository');
+import repository from './repository.js';
 
-module.exports = {
+export default {
   orders: async (filter) => {
     try {
       const orders = await repository.findAll(filter);

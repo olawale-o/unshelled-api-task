@@ -1,9 +1,13 @@
-const http = require('http');
-const client = require('./src/database')('mongodb://localhost:27017/unshelled?retryWrites=true&w=majority');
-const dbConnection = require('./src/database/connection');
-const app = require('./src/app');
+import http from 'http';
+
+import dbInstance from './src/database/index.js';
+
+import dbConnection from './src/database/connection.js';
+import app from './src/app.js';
 
 const server = http.createServer(app);
+
+const client = dbInstance('mongodb://localhost:27017/unshelled?retryWrites=true&w=majority');
 
 dbConnection(client)
   .then((result) => {
@@ -15,4 +19,4 @@ dbConnection(client)
   .catch(console.log)
   .finally(() => client.close());
 
-module.exports = server;
+export default server;
