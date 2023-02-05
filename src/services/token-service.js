@@ -31,4 +31,5 @@ export default {
   newAccessToken,
   newfreshToken,
   verify: async (credentials) => verifyToken(credentials, 'ACCESS_TOKEN_SECRET'),
+  verifyRefreshToken: async (credentials) => verifyToken(credentials, 'REFRESH_TOKEN_SECRET'),
 };
