@@ -1,3 +1,4 @@
 node_modules
 olist_*
 package-lock.json
+*.http
