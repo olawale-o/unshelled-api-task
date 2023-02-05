@@ -5,13 +5,15 @@ module.exports = {
     try {
       const { sellerId } = req;
       const { items_per_page: limit, page } = req.query;
-      console.log(page);
-      const orders = await service.orders({ seller_id: sellerId, limit });
+      const orders = await service.orders({
+        seller_id: sellerId, limit, offset: (page - 1) * limit,
+      });
+      const total = await service.countDocs({ seller_id: sellerId });
       res.status(200).json({
         data: orders,
         limit: 20,
         offset: 0,
-        total: orders.length,
+        total,
       });
     } catch (error) {
       res.status(500).json({ message: error.message });

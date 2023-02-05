@@ -46,7 +46,7 @@ module.exports = {
       $skip: parseInt(filter.offset, 10) || 0,
     },
     {
-      $limit: parseInt(filter.limit, 10) || 5,
+      $limit: parseInt(filter.limit, 10) || 10,
     },
   ]).toArray(),
 
@@ -63,4 +63,5 @@ module.exports = {
       $limit: 10,
     },
   ]).toArray(),
+  countDocs: async (filter) => Order.countDocuments(filter),
 };

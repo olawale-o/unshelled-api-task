@@ -17,4 +17,5 @@ module.exports = {
       throw new Error(error);
     }
   },
+  countDocs: async (filter) => repository.countDocs(filter),
 };
