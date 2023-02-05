@@ -40,4 +40,13 @@ export default {
       throw new Error(error);
     }
   },
+  findById: async (filter) => {
+    try {
+      const seller = await repository.findOne(filter);
+      return seller;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
 };

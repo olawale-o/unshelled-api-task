@@ -35,4 +35,23 @@ export default {
       res.status(500).json({ message: error.message });
     }
   },
+  refreshToken: async (req, res, next) => {
+    const { cookies } = req;
+    if (!cookies?.jwt) return res.sendStatus(401);
+    const refreshToken = cookies.jwt;
+    try {
+      const payload = await tokenService.verifyRefreshToken(refreshToken);
+      if (!payload) {
+        return res.sendStatus(403);
+      }
+      const seller = await service.findById({ seller_id: payload.sellerId });
+      const accessToken = await tokenService.newAccessToken({ sellerId: payload.sellerId });
+      return res.status(200).json({
+        accessToken,
+        seller,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
 };
